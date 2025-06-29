@@ -1,9 +1,9 @@
-package org.example.model.model;
+package org.example.model;
 
 import java.util.Objects;
 
 public class Project {
-    private String id; // primary key 값
+    private Long id; // primary key 값
     private String title; // 해당 프로젝트 타이틀
     private String description; // 해당 프로젝트의 설명
     private String techStack; // 해당 프로젝트의 기술스택
@@ -14,7 +14,7 @@ public class Project {
     public Project() {}
 
     // 모든 필드를 받는 생성자
-    public Project (String id, String title, String description, String techStack, String githubUrl, String imageUrl ) {
+    public Project (Long id, String title, String description, String techStack, String githubUrl, String imageUrl ) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -24,11 +24,11 @@ public class Project {
     }
 
     // Getter & Setter
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
