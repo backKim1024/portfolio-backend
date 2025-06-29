@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.repository.projectRepository.MemoryProjectRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-06-29T08:19:16.368Z" hostname="WIN-JIUAO7DLRBG" time="0.019">
-  <properties/>
-  <testcase name="프로젝트 저장 및 id로 조회 테스트" classname="org.example.repository.projectRepository.MemoryProjectRepositoryTest" time="0.019"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

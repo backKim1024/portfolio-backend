@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.service.ProjectServiceImplTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-06-29T11:05:11.929Z" hostname="WIN-JIUAO7DLRBG" time="0.024">
+  <properties/>
+  <testcase name="testUpdateNotFound()" classname="org.example.service.ProjectServiceImplTest" time="0.024"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

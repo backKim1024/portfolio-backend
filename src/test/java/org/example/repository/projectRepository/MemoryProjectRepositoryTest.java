@@ -37,14 +37,35 @@ class MemoryProjectRepositoryTest {
     }
 
     @Test
-    void findById() {
-    }
-
-    @Test
+    @DisplayName("전체 프로젝트 조회 테스트")
     void findAll() {
+        // given
+        Project project1 = new Project();
+        project1.setTitle("A 프로젝트");
+        Project project2 = new Project();
+        project2.setTitle(("B 프로젝트"));
+        repository.save(project1);
+        repository.save(project2);
+
+        // when
+        var all = repository.findAll();
+
+        // then
+        assertEquals(2, all.size());
     }
 
     @Test
+    @DisplayName("프로젝트 삭제 테스트")
     void deleteById() {
+        // given
+        Project project = new Project();
+        project.setTitle("삭제 대상");
+        repository.save(project);
+
+        // when
+        repository.deleteById(project.getId());
+
+        // then
+        assertTrue(repository.findById(project.getId()).isEmpty());
     }
 }
