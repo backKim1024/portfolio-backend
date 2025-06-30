@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Project API CRUD 테스트</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; }
+        section { margin-bottom: 30px; padding: 10px; border: 1px solid #ddd; }
+        input, button { margin: 5px 0; width: 100%; padding: 8px; box-sizing: border-box; }
+        pre { background: #f4f4f4; padding: 10px; white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+<h1>Project API CRUD 테스트 페이지</h1>
+
+<!-- 1) 생성 -->
+<section>
+    <h2>1. 프로젝트 생성 (POST /project)</h2>
+    <input id="createTitle"       placeholder="Title">
+    <input id="createDescription" placeholder="Description">
+    <input id="createTechStack"   placeholder="Tech Stack">
+    <input id="createGithubUrl"   placeholder="GitHub URL">
+    <input id="createImageUrl"    placeholder="Image URL">
+    <button onclick="createProject()">생성</button>
+    <pre id="outputCreate"></pre>
+</section>
+
+<!-- 2) 전체 조회 -->
+<section>
+    <h2>2. 전체 조회 (GET /project)</h2>
+    <button onclick="listProjects()">전체 리스트 불러오기</button>
+    <pre id="outputList"></pre>
+</section>
+
+<!-- 3) 단건 조회 -->
+<section>
+    <h2>3. 단건 조회 (GET /project/{id})</h2>
+    <input id="getId" placeholder="Project ID">
+    <button onclick="getProject()">조회</button>
+    <pre id="outputGet"></pre>
+</section>
+
+<!-- 4) 수정 -->
+<section>
+    <h2>4. 수정 (PUT /project/{id})</h2>
+    <input id="updateId"          placeholder="Project ID">
+    <input id="updateTitle"       placeholder="New Title">
+    <input id="updateDescription" placeholder="New Description">
+    <input id="updateTechStack"   placeholder="New Tech Stack">
+    <input id="updateGithubUrl"   placeholder="New GitHub URL">
+    <input id="updateImageUrl"    placeholder="New Image URL">
+    <button onclick="updateProject()">수정</button>
+    <pre id="outputUpdate"></pre>
+</section>
+
+<!-- 5) 삭제 -->
+<section>
+    <h2>5. 삭제 (DELETE /project/{id})</h2>
+    <input id="deleteId" placeholder="Project ID">
+    <button onclick="deleteProject()">삭제</button>
+    <pre id="outputDelete"></pre>
+</section>
+
+<script>
+    // 공통 fetch 옵션
+    const opts = { credentials: 'include' };
+
+    function createProject() {
+      const project = {
+        title:       document.getElementById('createTitle').value,
+        description: document.getElementById('createDescription').value,
+        techStack:   document.getElementById('createTechStack').value,
+        githubUrl:   document.getElementById('createGithubUrl').value,
+        imageUrl:    document.getElementById('createImageUrl').value
+      };
+      fetch('/project', {
+        ...opts,
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(project)
+      })
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('outputCreate').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(e => document.getElementById('outputCreate').textContent = e);
+    }
+
+    function listProjects() {
+      fetch('/project', opts)
+        .then(r => r.json())
+        .then(list => {
+          document.getElementById('outputList').textContent = JSON.stringify(list, null, 2);
+        })
+        .catch(e => document.getElementById('outputList').textContent = e);
+    }
+
+    function getProject() {
+      const id = document.getElementById('getId').value;
+      fetch(`/project/${id}`, opts)
+        .then(r => {
+          if (!r.ok) throw new Error(r.status);
+          return r.json();
+        })
+        .then(p => {
+          document.getElementById('outputGet').textContent = JSON.stringify(p, null, 2);
+        })
+        .catch(e => document.getElementById('outputGet').textContent = `Error: ${e}`);
+    }
+
+    function updateProject() {
+      const id = document.getElementById('updateId').value;
+      const project = {
+        title:       document.getElementById('updateTitle').value,
+        description: document.getElementById('updateDescription').value,
+        techStack:   document.getElementById('updateTechStack').value,
+        githubUrl:   document.getElementById('updateGithubUrl').value,
+        imageUrl:    document.getElementById('updateImageUrl').value
+      };
+      fetch(`/project/${id}`, {
+        ...opts,
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(project)
+      })
+      .then(r => {
+        if (r.status === 404) throw new Error('Not Found');
+        return r.json();
+      })
+      .then(data => {
+        document.getElementById('outputUpdate').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(e => document.getElementById('outputUpdate').textContent = `Error: ${e}`);
+    }
+
+    function deleteProject() {
+      const id = document.getElementById('deleteId').value;
+      fetch(`/project/${id}`, {
+        ...opts,
+        method: 'DELETE'
+      })
+      .then(r => {
+        if (r.status === 204) {
+          document.getElementById('outputDelete').textContent = '삭제 성공';
+        } else {
+          document.getElementById('outputDelete').textContent = `Error: ${r.status}`;
+        }
+      })
+      .catch(e => document.getElementById('outputDelete').textContent = `Error: ${e}`);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.handler.ProjectHandlerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2025-06-30T21:53:24.776Z" hostname="WIN-JIUAO7DLRBG" time="1.355">
+  <properties/>
+  <testcase name="updateProject_found_returns200()" classname="org.example.handler.ProjectHandlerTest" time="1.28"/>
+  <testcase name="updateProject_notFound_returns404()" classname="org.example.handler.ProjectHandlerTest" time="0.011"/>
+  <testcase name="getAllProjects_returnsListAnd200()" classname="org.example.handler.ProjectHandlerTest" time="0.006"/>
+  <testcase name="getProjectById_notFound_returns404()" classname="org.example.handler.ProjectHandlerTest" time="0.011"/>
+  <testcase name="getProjectById_found_returns200()" classname="org.example.handler.ProjectHandlerTest" time="0.004"/>
+  <testcase name="createProject_returns201_andBody()" classname="org.example.handler.ProjectHandlerTest" time="0.007"/>
+  <testcase name="deleteProject_notFound_returns404()" classname="org.example.handler.ProjectHandlerTest" time="0.008"/>
+  <testcase name="deleteProject_found_returns204()" classname="org.example.handler.ProjectHandlerTest" time="0.006"/>
+  <testcase name="unsupportedMethod_returns405()" classname="org.example.handler.ProjectHandlerTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

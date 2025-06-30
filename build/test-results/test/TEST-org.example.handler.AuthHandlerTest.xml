@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.handler.AuthHandlerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-06-29T12:08:42.051Z" hostname="WIN-JIUAO7DLRBG" time="0.029">
-  <properties/>
-  <testcase name="testLoginWithWrongPassword()" classname="org.example.handler.AuthHandlerTest" time="0.019"/>
-  <testcase name="testLoginWithGuessPassword()" classname="org.example.handler.AuthHandlerTest" time="0.002"/>
-  <testcase name="testLoginWithAdminPassword()" classname="org.example.handler.AuthHandlerTest" time="0.004"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
